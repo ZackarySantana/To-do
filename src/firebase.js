@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import firebaseConfig from "./firebase_creds.js";
+import firebaseConfig from "./firebase_creds";
 
 console.log(firebase);
 
