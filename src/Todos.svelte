@@ -3,10 +3,7 @@
   import { startWith } from "rxjs/operators";
 
   import TodoItem from "./TodoItem.svelte";
-  import db from "./firebase";
-  import App from "./App.svelte";
-  import Login from "./Login.svelte";
-  import Profile from "./Profile.svelte";
+  import { db } from "./firebase";
 
   export let uid;
 
