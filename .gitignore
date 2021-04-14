@@ -4,7 +4,7 @@
 /public/build/
 
 # Firebase credentials
-firebase_creds.js
+todos.js
 
 # Misc
 .DS_Store

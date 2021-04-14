@@ -1,11 +1,11 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import firebaseConfig from "./firebase_creds";
+import serviceAccount from "../todos.js";
 
 console.log(firebase);
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(serviceAccount);
 
 export const auth = firebase.auth();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
