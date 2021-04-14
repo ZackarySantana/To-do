@@ -1,4 +1,12 @@
+# Packages
 /node_modules/
+# Build of application
 /public/build/
 
+# Firebase credentials
+firebase_creds.js
+
+# Misc
 .DS_Store
+
+
