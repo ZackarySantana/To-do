@@ -1,9 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import serviceAccount from "../todos.js";
-
-console.log(firebase);
+import serviceAccount from "../todos.json";
 
 firebase.initializeApp(serviceAccount);
 
