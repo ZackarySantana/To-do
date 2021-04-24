@@ -1,0 +1,6 @@
+# This file is to document what I used and why, not for any installation!
+
+# To load JSON files
+https://github.com/rollup/plugins/tree/master/packages/json
+npm i pnpm -g
+npm i @rollup/plugin-json --save-dev

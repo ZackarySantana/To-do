@@ -5,6 +5,7 @@
 
 # Firebase credentials
 todos.js
+todos.json
 
 # Misc
 .DS_Store
