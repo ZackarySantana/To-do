@@ -3,8 +3,6 @@
 
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
-
-  console.log(user);
 </script>
 
 <section>
