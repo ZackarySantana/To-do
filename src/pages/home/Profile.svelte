@@ -33,7 +33,7 @@
 
   img {
     width: 50%;
-    border-radius: 30px;
+    border-radius: 50%;
     border: var(--primary) 2px solid;
     margin-top: 1em;
   }
