@@ -21,8 +21,8 @@
   export let complete;
 </script>
 
-<li in:fly={{ x: 900, duration: 500 }}>
-  <span class:complete>{text}</span>
+<li in:fly={{ x: 100, duration: 500 }}>
+  <h2 class:complete>{text}</h2>
   <button on:click={toggleStatus}>{complete ? "✔️" : "❌"}</button>
   <button on:click={remove}> 🗑 </button>
 </li>
@@ -31,5 +31,18 @@
   .complete {
     text-decoration: line-through;
     color: green;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+  }
+  button {
+    font-size: 1.75em;
+  }
+
+  h2 {
+    color: #eeeeee;
+    display: inline;
+    margin-right: 0.5em;
   }
 </style>

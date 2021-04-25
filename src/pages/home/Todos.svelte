@@ -1,6 +1,7 @@
 <script>
   import { collectionData } from "rxfire/firestore";
-  import { startWith } from "rxjs/operators";
+  import { startWith, map } from "rxjs/operators";
+  import { notifier } from "@beyonk/svelte-notifications";
 
   import TodoItem from "./TodoItem.svelte";
   import { db } from "../../firebase/firebase";
@@ -8,16 +9,31 @@
   export let uid;
 
   let text = "";
+  let amount = 0;
 
-  const query = db
-    .collection("todos")
-    .where("uid", "==", uid)
-    .orderBy("created");
+  const td = db.collection("todos").doc(uid).collection("documents");
 
-  const todos = collectionData(query, "id").pipe(startWith([]));
+  const query = db.collection("todos/" + uid + "/documents").orderBy("created");
+
+  const todos = collectionData(query, "id").pipe(
+    map((x) => {
+      amount = x.length;
+      return x;
+    }),
+    startWith([])
+  );
 
   function add() {
-    db.collection("todos").add({
+    if (amount >= 5) {
+      notifier.danger("You are only allowed 5 todo list items");
+      return;
+    }
+    if (text == "") {
+      notifier.warning("You cannot add an empty string to your todo list");
+      return;
+    }
+
+    db.collection("todos/" + uid + "/documents").add({
       uid,
       text,
       complete: false,
@@ -28,22 +44,66 @@
 
   function updateStatus(event) {
     const { id, newStatus } = event.detail;
-    db.collection("todos").doc(id).update({ complete: newStatus });
+    db.collection("todos/" + uid + "/documents")
+      .doc(id)
+      .update({ complete: newStatus });
   }
 
   function removeItem(event) {
     const { id } = event.detail;
-    db.collection("todos").doc(id).delete();
+    db.collection("todos/" + uid + "/documents")
+      .doc(id)
+      .delete();
   }
 </script>
 
-<ul>
-  {#each $todos as todo}
-    <TodoItem {...todo} on:remove={removeItem} on:toggle={updateStatus} />
-  {/each}
-</ul>
+<section>
+  <h1>To-do List</h1>
+  <ul>
+    {#each $todos as todo}
+      <TodoItem {...todo} on:remove={removeItem} on:toggle={updateStatus} />
+    {/each}
+  </ul>
 
-<input bind:value={text} />
-<hr />
-<p>Your task: <strong>{text}</strong></p>
-<button on:click={add}>Add Task</button>
+  <input bind:value={text} placeholder="To-do item here" />
+  <button on:click={add}>Add Task</button>
+</section>
+
+<style>
+  section {
+    background: #121212;
+    width: 70vw;
+    height: calc(100vh - 2em);
+    margin: 1em;
+
+    filter: drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.8));
+    border-radius: 100px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input {
+    margin-top: auto;
+    color: #eeeeee;
+  }
+
+  button {
+    margin: 1em 0;
+  }
+
+  ul {
+    list-style: none;
+    text-align: right;
+    min-width: 40vw;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    section {
+      width: 95vw;
+      min-height: 100vh;
+      height: fit-content;
+    }
+  }
+</style>

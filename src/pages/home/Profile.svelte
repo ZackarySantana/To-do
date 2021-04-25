@@ -32,5 +32,17 @@
     width: 50%;
     border-radius: 30px;
     border: #eeeeee 2px solid;
+    margin-top: 1em;
+  }
+
+  button {
+    margin-bottom: 1em;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    section {
+      width: 95vw;
+      height: fit-content;
+    }
   }
 </style>

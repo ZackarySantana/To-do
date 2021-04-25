@@ -23,4 +23,11 @@
     justify-content: center;
     flex-direction: row;
   }
+
+  @media only screen and (max-width: 1200px) {
+    section {
+      height: fit-content;
+      flex-direction: column;
+    }
+  }
 </style>
