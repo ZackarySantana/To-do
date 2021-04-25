@@ -1,0 +1,21 @@
+{
+  "name": "To-do",
+  "short_name": "To-do",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A to-do application by Zackary Santana",
+  "icons": [
+    {
+      "src": "logo_small.png",
+      "sizes": "320x320",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://zackaryjamessantana.com"
+    }
+  ]
+}
