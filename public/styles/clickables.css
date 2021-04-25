@@ -1,24 +1,22 @@
 button {
-  color: #555;
-  background-color: #121212;
+  color: var(--secondary);
+  background-color: var(--background);
   transition: color 1s;
   border-radius: 15px;
-  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.09),
-    3px 3px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--first_shadow), var(--second_shadow);
 }
 
 button:hover {
-  color: #eeeeee;
+  color: var(--primary);
   cursor: pointer;
 }
 
 input {
-  color: #555;
-  background-color: #121212;
+  color: var(--secondary);
+  background-color: var(--background);
   transition: color 1s;
   border-radius: 15px;
-  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.09) inset,
-    3px 3px 3px rgba(0, 0, 0, 0.5) inset;
+  box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
 }
 
 input::placeholder {
@@ -26,21 +24,19 @@ input::placeholder {
 }
 
 button:hover {
-  color: #eeeeee;
+  color: var(--primary);
 }
 
 button:active {
-  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.09) inset,
-    3px 3px 3px rgba(0, 0, 0, 0.5) inset;
+  box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
 }
 
 a {
-  color: #555;
-  text-shadow: -2px -2px 3px rgba(255, 255, 255, 0.09),
-    3px 3px 3px rgba(0, 0, 0, 0.5);
+  color: var(--secondary);
+  text-shadow: var(--first_shadow), var(--second_shadow);
   transition: color 1s;
 }
 
 a:hover {
-  color: #eeeeee;
+  color: var(--primary);
 }

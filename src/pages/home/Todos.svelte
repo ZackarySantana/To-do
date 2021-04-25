@@ -71,12 +71,12 @@
 
 <style>
   section {
-    background: #121212;
+    background: var(--background);
     width: 70vw;
     height: calc(100vh - 2em);
     margin: 1em;
 
-    filter: drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(var(--section_shadow));
     border-radius: 100px;
 
     display: flex;
@@ -87,7 +87,7 @@
   input {
     margin-top: auto;
     max-width: 80vw;
-    color: #eeeeee;
+    color: var(--primary);
   }
 
   button {

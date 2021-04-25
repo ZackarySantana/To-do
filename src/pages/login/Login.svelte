@@ -16,7 +16,7 @@
 
 <style>
   section {
-    background: #14161a;
+    background: var(--parent-background);
     height: 100vh;
     display: flex;
     align-items: center;

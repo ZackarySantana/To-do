@@ -40,16 +40,16 @@
     font-size: 1.75em;
     margin-left: 0.2em;
     min-width: 1.75em;
-    color: #eeeeee;
+    color: var(--primary);
     transition: 0.5s text-shadow;
   }
 
   button:hover {
-    text-shadow: 0 0 5px #eeeeee;
+    text-shadow: 0 0 5px var(--primary);
   }
 
   h2 {
-    color: #eeeeee;
+    color: var(--primary);
     display: inline;
     margin-right: 0.5em;
   }
