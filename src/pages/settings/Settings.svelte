@@ -25,11 +25,13 @@
     <div class="settings-box">
       <section>
         <h2>Mode</h2>
-        <button on:click={modeChange}>{darkmode ? "🌑" : "☀️"}</button>
+        <button on:click={modeChange} class={darkmode ? "dark" : "light"}
+          >{darkmode ? "🌑" : "☀️"}</button
+        >
       </section>
     </div>
     <section class="x-button">
-      <button class="dark" on:click={close}>❌</button>
+      <button on:click={close}>❌</button>
     </section>
   </section>
   <div class="background" />
@@ -65,6 +67,22 @@
 
   .x-button button {
     width: 2em;
+  }
+
+  button.dark {
+    box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
+  }
+
+  button.dark:active {
+    box-shadow: var(--first_shadow), var(--second_shadow);
+  }
+
+  button.light {
+    box-shadow: var(--first_shadow), var(--second_shadow);
+  }
+
+  button.light:active {
+    box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
   }
 
   .body {
