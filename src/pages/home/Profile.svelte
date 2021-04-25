@@ -1,7 +1,6 @@
 <script>
   export let displayName;
   export let photoURL;
-  export let uid;
 
   import { auth } from "../../firebase/firebase";
 </script>
