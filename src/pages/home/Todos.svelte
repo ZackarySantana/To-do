@@ -11,8 +11,6 @@
   let text = "";
   let amount = 0;
 
-  const td = db.collection("todos").doc(uid).collection("documents");
-
   const query = db.collection("todos/" + uid + "/documents").orderBy("created");
 
   const todos = collectionData(query, "id").pipe(
