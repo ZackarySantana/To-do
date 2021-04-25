@@ -1,6 +1,7 @@
 <script>
   export let displayName;
   export let photoURL;
+  export let openSettings;
 
   import { auth } from "../../firebase/firebase";
 </script>
@@ -8,7 +9,10 @@
 <section>
   <img src={photoURL} alt="User Avatar" />
   <h1>Hi {displayName}</h1>
-  <button on:click={() => auth.signOut()}>Logout</button>
+  <div>
+    <button on:click={() => openSettings()}>⚙️</button>
+    <button on:click={() => auth.signOut()}>Logout</button>
+  </div>
 </section>
 
 <style>
@@ -35,7 +39,11 @@
   }
 
   button {
-    margin-bottom: 1em;
+    margin: 0 0 1em 0.2em;
+  }
+
+  button:nth-of-type(1):hover {
+    text-shadow: 0 0 5px var(--primary);
   }
 
   @media only screen and (max-width: 1200px) {

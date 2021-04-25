@@ -6,24 +6,43 @@
   import Home from "./home/Home.svelte";
   import Login from "./login/Login.svelte";
   import Styles from "./styles/Styles.svelte";
+  import Settings from "./settings/Settings.svelte";
 
   let darkmode = false;
+  let settings = false;
   let user = authState(auth);
+
+  function openSettings() {
+    settings = true;
+  }
+
+  function closeSettings() {
+    settings = false;
+  }
+
+  function modeChange(mode) {
+    darkmode = !darkmode;
+  }
 </script>
 
 <NotificationDisplay />
 <Styles {darkmode} />
 
 {#if $user}
-  <Home {user} />
+  <Home {user} {openSettings} />
 {:else}
   <Login />
+{/if}
+
+{#if settings}
+  <Settings {darkmode} on:close={closeSettings} on:modeChange={modeChange} />
 {/if}
 
 {#if !darkmode}
   <style>
     :root {
       --parent-background: #eeeeee;
+      --transparent-parent-background: rgba(238, 238, 238, 0.8);
       --background: #dddddd;
       --primary: #14161a;
       --secondary: #121212;
@@ -39,6 +58,7 @@
   <style>
     :root {
       --parent-background: #14161a;
+      --transparent-parent-background: rgba(20, 22, 26, 0.8);
       --background: #121212;
       --primary: #eeeeee;
       --secondary: #555;

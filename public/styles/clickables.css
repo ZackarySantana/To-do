@@ -4,11 +4,17 @@ button {
   transition: color 1s;
   border-radius: 15px;
   box-shadow: var(--first_shadow), var(--second_shadow);
+  transition: 0.5s text-shadow;
 }
 
 button:hover {
   color: var(--primary);
   cursor: pointer;
+  text-shadow: 0 0 1px var(--primary);
+}
+
+button:active {
+  box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
 }
 
 input {
@@ -21,14 +27,6 @@ input {
 
 input::placeholder {
   color: #a0a0a0;
-}
-
-button:hover {
-  color: var(--primary);
-}
-
-button:active {
-  box-shadow: var(--first_shadow) inset, var(--second_shadow) inset;
 }
 
 a {

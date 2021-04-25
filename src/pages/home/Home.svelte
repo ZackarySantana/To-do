@@ -1,5 +1,6 @@
 <script>
   export let user;
+  export let openSettings;
 
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
@@ -7,7 +8,7 @@
 
 <section>
   {#if $user}
-    <Profile {...$user} />
+    <Profile {...$user} {openSettings} />
     <Todos uid={$user.uid} />
   {/if}
 </section>

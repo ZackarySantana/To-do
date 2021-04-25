@@ -1,5 +1,5 @@
 <script>
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
@@ -41,7 +41,6 @@
     margin-left: 0.2em;
     min-width: 1.75em;
     color: var(--primary);
-    transition: 0.5s text-shadow;
   }
 
   button:hover {
