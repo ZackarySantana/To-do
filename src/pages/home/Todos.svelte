@@ -10,6 +10,7 @@
 
   let text = "";
   let amount = 0;
+  let inputField;
 
   const query = db.collection("todos/" + uid + "/documents").orderBy("created");
 
@@ -22,6 +23,7 @@
   );
 
   function add() {
+    inputField.focus();
     if (amount >= 5) {
       notifier.danger("You are only allowed 5 todo list items");
       return;
@@ -53,6 +55,12 @@
       .doc(id)
       .delete();
   }
+
+  function testEnter(event) {
+    if (event.code == "Enter") {
+      add();
+    }
+  }
 </script>
 
 <section>
@@ -63,7 +71,12 @@
     {/each}
   </ul>
 
-  <input bind:value={text} placeholder="To-do item here" />
+  <input
+    bind:value={text}
+    bind:this={inputField}
+    on:keydown={testEnter}
+    placeholder="To-do item here"
+  />
   <button on:click={add}>Add Task</button>
 </section>
 
