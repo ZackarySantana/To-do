@@ -25,11 +25,7 @@
     <div class="settings-box">
       <section>
         <h2>Mode</h2>
-        {#if darkmode}
-          <button class="dark" on:click={modeChange}>🌑</button>
-        {:else}
-          <button class="light" on:click={modeChange}>☀️</button>
-        {/if}
+        <button on:click={modeChange}>{darkmode ? "🌑" : "☀️"}</button>
       </section>
     </div>
     <section class="x-button">
@@ -41,18 +37,30 @@
 
 <style>
   .settings-box {
-    width: 80%;
-    margin-bottom: 3em;
+    padding: 3em 3em 3em 3em;
+    width: 100%;
   }
 
   .settings-box section {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .settings-box section * {
+    margin: 0 1em;
+  }
+
+  .settings-box section *:first-child {
+    margin-right: auto;
   }
 
   .x-button {
     margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .x-button button {
@@ -97,7 +105,7 @@
 
   @media only screen and (max-width: 1200px) {
     section {
-      min-width: 95vw;
+      width: 80vw;
     }
   }
 </style>

@@ -1,15 +1,19 @@
 <script>
-  export let user;
-  export let openSettings;
-
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
+  import LoadSettings from "../settings/LoadSettings.svelte";
+
+  export let user;
+  export let openSettings;
+  export let modeChange;
 </script>
 
 <section>
   {#if $user}
     <Profile {...$user} {openSettings} />
     <Todos uid={$user.uid} />
+
+    <LoadSettings uid={$user.uid} {modeChange} />
   {/if}
 </section>
 
