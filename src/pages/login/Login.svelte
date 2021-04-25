@@ -32,5 +32,6 @@
   h2 {
     margin: 0;
     margin-bottom: 0.7em;
+    color: var(--third);
   }
 </style>
