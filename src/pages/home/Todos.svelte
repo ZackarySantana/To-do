@@ -3,11 +3,11 @@
   import { startWith } from "rxjs/operators";
 
   import TodoItem from "./TodoItem.svelte";
-  import { db } from "./firebase";
+  import { db } from "../../firebase/firebase";
 
   export let uid;
 
-  let text = "some task";
+  let text = "";
 
   const query = db
     .collection("todos")
@@ -17,12 +17,16 @@
   const todos = collectionData(query, "id").pipe(startWith([]));
 
   function add() {
-    db.collection("todos");
+    db.collection("todos").add({
+      uid,
+      text,
+      complete: false,
+      created: Date.now(),
+    });
     text = "";
   }
 
   function updateStatus(event) {
-    console.log(event);
     const { id, newStatus } = event.detail;
     db.collection("todos").doc(id).update({ complete: newStatus });
   }
