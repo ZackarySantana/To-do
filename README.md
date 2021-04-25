@@ -2,6 +2,10 @@
 
 This todo application uses google authentication and keeps track of a todo list for you
 
+## Live Demo
+
+<a href="https://todo.zackaryjamessantana.com/">https://todo.zackaryjamessantana.com/</a>
+
 ## Motivation
 
 I wanted a basic introduction to Svelte!
