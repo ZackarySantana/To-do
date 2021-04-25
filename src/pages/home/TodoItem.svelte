@@ -24,7 +24,7 @@
 <li in:fly={{ x: 100, duration: 500 }}>
   <h2 class:complete>{text}</h2>
   <button on:click={toggleStatus}>{complete ? "✔️" : "❌"}</button>
-  <button on:click={remove}> 🗑 </button>
+  <button on:click={remove}>🗑️</button>
 </li>
 
 <style>
@@ -38,6 +38,14 @@
   }
   button {
     font-size: 1.75em;
+    margin-left: 0.2em;
+    min-width: 1.75em;
+    color: #eeeeee;
+    transition: 0.5s text-shadow;
+  }
+
+  button:hover {
+    text-shadow: 0 0 5px #eeeeee;
   }
 
   h2 {

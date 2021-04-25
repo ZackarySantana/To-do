@@ -8,7 +8,9 @@
 
 <section>
   <h1>To-do Application</h1>
-  <h2>By <a href="https://zackaryjamessantana.com">Zackary Santana</a></h2>
+  <h2>
+    By <i><a href="https://zackaryjamessantana.com">Zackary Santana</a></i>
+  </h2>
   <button on:click={login}>Log in with Google</button>
 </section>
 
