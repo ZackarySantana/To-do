@@ -4,7 +4,7 @@ This todo application uses google authentication and keeps track of a todo list 
 
 ## Live Demo
 
-<a href="https://todo.zackaryjamessantana.com/" target="_blank">https://todo.zackaryjamessantana.com/</a>
+<a href="https://todo.zackaryjamessantana.com/">https://todo.zackaryjamessantana.com/</a>
 
 ## Motivation
 
