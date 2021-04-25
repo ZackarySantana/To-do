@@ -86,6 +86,7 @@
 
   input {
     margin-top: auto;
+    max-width: 80vw;
     color: #eeeeee;
   }
 
