@@ -28,14 +28,17 @@ textarea {
 h1 {
   color: #eeeeee;
   font-size: 2.5em;
+  text-align: center;
 }
 
 h2 {
   color: #333;
   font-size: 1.5em;
+  text-align: center;
 }
 
 p {
   color: #eeeeee;
   font-size: 1em;
+  text-align: center;
 }
