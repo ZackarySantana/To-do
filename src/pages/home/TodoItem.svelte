@@ -36,6 +36,7 @@
   li {
     margin-bottom: 0.5em;
   }
+
   button {
     font-size: 1.75em;
     margin-left: 0.2em;
