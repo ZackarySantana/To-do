@@ -19,7 +19,7 @@
 
 	<script defer src='./build/bundle.js'></script>
 	<script defer>
-		if('serviceWorker' in navigator) {
+		if(location.hostname !== "localhost" && 'serviceWorker' in navigator) {
 		  navigator.serviceWorker
 				   .register('/serviceWorker.js')
 				   .then((e) => console.log("Registration worked!"))

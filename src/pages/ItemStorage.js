@@ -6,7 +6,9 @@ import { firebaseConfig } from "../../todos";
 firebase.initializeApp(firebaseConfig);
 console.log(firebase);
 
-export const auth = firebase.auth();
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-export const db = firebase.firestore();
+const db = firebase.firestore();
+
+export function addItem(uid, text) {}
