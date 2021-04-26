@@ -24,6 +24,7 @@
 
   function add() {
     inputField.focus();
+
     if (amount >= 5) {
       notifier.danger("You are only allowed 5 todo list items");
       return;
@@ -78,6 +79,7 @@
     placeholder="To-do item here"
   />
   <button on:click={add}>Add Task</button>
+  <button on:click={add}> Add Task </button>
 </section>
 
 <style>
