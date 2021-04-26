@@ -18,6 +18,13 @@
 	<link rel='stylesheet' href='./build/bundle.css'>
 
 	<script defer src='./build/bundle.js'></script>
+	<script defer>
+		if('serviceWorker' in navigator) {
+		  navigator.serviceWorker
+				   .register('/sw.js')
+				   .then(function() { console.log("Service Worker Registered"); });
+		}
+		</script>
 </head>
 
 <body>
