@@ -79,7 +79,6 @@
     placeholder="To-do item here"
   />
   <button on:click={add}>Add Task</button>
-  <button on:click={add}> Add Task </button>
 </section>
 
 <style>
