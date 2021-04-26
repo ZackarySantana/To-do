@@ -26,8 +26,9 @@ I wanted a basic introduction to Svelte! I also wanted to go indepth using fireb
 <ul>
 <li>- [<a href="https://svelte.dev/">Svelte</a>] - Is the framework of this repo</li>
 <li>- [<a href="https://firebase.google.com/">Firebase</a>] - Used to authenticate and store user data</li>
-<li>- [<a href="https://github.com/beyonk-adventures/svelte-notifications">Svelte Notifications</a>] - Used to make fluent and nice notifications</li>
-<li>- [<a href="https://github.com/6eDesign/svelte-calendar">Svelte Calendar</a>] - Used to make lightweight, compact calendar</li>
+<li>- [<a href="https://github.com/beyonk-adventures/svelte-notifications/">Svelte Notifications</a>] - Used to make fluent and nice notifications</li>
+<li>- [<a href="https://github.com/6eDesign/svelte-calendar/">Svelte Calendar</a>] - Used to make lightweight, compact calendar</li>
+<li>- [<a href="https://developers.google.com/web/tools/workbox/modules/workbox-cli/">Workbox CLI</a>] - Used to generate service workers</li>
 </ul>
 
 ## Firebase
