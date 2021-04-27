@@ -1,44 +1,23 @@
 <script>
-  import { user } from "rxfire/auth";
   import { NotificationDisplay } from "@beyonk/svelte-notifications";
 
-  import { setSettings } from "./ItemStorage";
+  import { user, darkmode } from "./ItemStorage";
   import Home from "./home/Home.svelte";
   import Login from "./login/Login.svelte";
   import Styles from "./styles/Styles.svelte";
   import Settings from "./settings/Settings.svelte";
 
-  let darkmode = localStorage.getItem("darkmode") === "true";
-  let settings = false;
-
-  function openSettings() {
-    settings = true;
-  }
-
-  function closeSettings() {
-    settings = false;
-  }
-
-  function modeChange(event) {
-    if (event.detail !== null) {
-      darkmode = event.detail;
-    } else {
-      darkmode = !darkmode;
-    }
-
-    setSettings({ darkmode });
-    localStorage.setItem("darkmode", darkmode);
-  }
+  import { isSettingsOpen } from "./settings/SettingsHandler";
 </script>
 
 <NotificationDisplay />
-<Styles {darkmode} />
+<Styles />
 
 {#if $user}
-  <Home {user} {openSettings} {modeChange} />
+  <Home {user} />
 
-  {#if settings}
-    <Settings {darkmode} on:close={closeSettings} on:modeChange={modeChange} />
+  {#if isSettingsOpen}
+    <Settings />
   {/if}
 {:else}
   <Login />

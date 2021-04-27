@@ -1,17 +1,17 @@
 <script>
   import { logout } from "../ItemStorage";
+  import { toggleSettings } from "../settings/SettingsHandler";
 
   export let displayName;
   export let photoURL;
-  export let openSettings;
 </script>
 
 <section>
   <img src={photoURL} alt="User Avatar" />
   <h1>Hi {displayName}</h1>
   <div>
-    <button on:click={() => openSettings()}>⚙️</button>
-    <button on:click={logout()}>Logout</button>
+    <button on:click={toggleSettings}>⚙️</button>
+    <button on:click={logout}>Logout</button>
   </div>
 </section>
 

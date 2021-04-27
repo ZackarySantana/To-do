@@ -4,16 +4,14 @@
   import LoadSettings from "../settings/LoadSettings.svelte";
 
   export let user;
-  export let openSettings;
-  export let modeChange;
 </script>
 
 <section>
   {#if $user}
-    <Profile {...$user} {openSettings} />
-    <Todos uid={$user.uid} />
+    <Profile displayName={$user.displayName} photoURL={$user.photoURL} />
+    <Todos />
 
-    <LoadSettings uid={$user.uid} {modeChange} />
+    <LoadSettings />
   {/if}
 </section>
 

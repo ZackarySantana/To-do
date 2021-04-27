@@ -1,17 +1,11 @@
 <script>
   import { fade, fly } from "svelte/transition";
-  import { createEventDispatcher } from "svelte";
 
-  export let darkmode;
+  import { toggleSettings } from "./SettingsHandler";
+  import { darkmode } from "../ItemStorage";
 
-  const dispatch = createEventDispatcher();
-
-  function modeChange() {
-    dispatch("modeChange");
-  }
-
-  function close() {
-    dispatch("close");
+  function toggleDarkmode() {
+    setSettings({ darkmode: !darkmode });
   }
 </script>
 
@@ -25,13 +19,13 @@
     <div class="settings-box">
       <section>
         <h2>Mode</h2>
-        <button on:click={modeChange} class={darkmode ? "dark" : "light"}
+        <button on:click={toggleDarkmode} class={darkmode ? "dark" : "light"}
           >{darkmode ? "🌑" : "☀️"}</button
         >
       </section>
     </div>
     <section class="x-button">
-      <button on:click={close}>❌</button>
+      <button on:click={toggleSettings}>❌</button>
     </section>
   </section>
   <div class="background" />

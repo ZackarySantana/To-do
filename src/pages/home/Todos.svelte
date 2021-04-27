@@ -4,9 +4,7 @@
   import { notifier } from "@beyonk/svelte-notifications";
 
   import TodoItem from "./TodoItem.svelte";
-  import { getItems, is_addItem } from "../ItemStorage";
-
-  export let uid;
+  import { getItems, is_addItem, removeItem, updateItem } from "../ItemStorage";
 
   let text = "";
   let amount = 0;
@@ -14,11 +12,13 @@
 
   const todos = collectionData(getItems(), "id").pipe(
     map((x) => {
+      console.log("Test");
       amount = x.length;
       return x;
     }),
     startWith([])
   );
+  console.log(todos);
 
   function add() {
     inputField.focus();
@@ -38,16 +38,12 @@
 
   function updateStatus(event) {
     const { id, newStatus } = event.detail;
-    db.collection("todos/" + uid + "/documents")
-      .doc(id)
-      .update({ complete: newStatus });
+    updateItem(id, newStatus);
   }
 
-  function removeItem(event) {
+  function remove(event) {
     const { id } = event.detail;
-    db.collection("todos/" + uid + "/documents")
-      .doc(id)
-      .delete();
+    removeItem(id);
   }
 
   function testEnter(event) {

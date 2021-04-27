@@ -1,5 +1,5 @@
 <script>
-  export let darkmode;
+  import { darkmode } from "../ItemStorage";
 </script>
 
 {#if darkmode}
