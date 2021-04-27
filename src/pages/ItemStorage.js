@@ -6,9 +6,18 @@ import { firebaseConfig } from "../../todos";
 firebase.initializeApp(firebaseConfig);
 console.log(firebase);
 
-const auth = firebase.auth();
+export const auth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 const db = firebase.firestore();
 
-export function addItem(uid, text) {}
+export function is_addItem(uid, text) {
+  if (db !== undefined) {
+    db.collection("todos/" + uid + "/documents").add({
+      uid,
+      text,
+      complete: false,
+      created: Date.now(),
+    });
+  }
+}

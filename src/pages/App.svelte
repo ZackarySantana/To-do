@@ -2,7 +2,7 @@
   import { authState } from "rxfire/auth";
   import { NotificationDisplay } from "@beyonk/svelte-notifications";
 
-  import { auth, db } from "../firebase/firebase";
+  import { auth } from "./ItemStorage";
   import Home from "./home/Home.svelte";
   import Login from "./login/Login.svelte";
   import Styles from "./styles/Styles.svelte";

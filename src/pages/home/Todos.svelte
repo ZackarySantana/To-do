@@ -4,7 +4,7 @@
   import { notifier } from "@beyonk/svelte-notifications";
 
   import TodoItem from "./TodoItem.svelte";
-  import { db } from "../../firebase/firebase";
+  import { is_addItem } from "../ItemStorage";
 
   export let uid;
 
@@ -34,12 +34,7 @@
       return;
     }
 
-    db.collection("todos/" + uid + "/documents").add({
-      uid,
-      text,
-      complete: false,
-      created: Date.now(),
-    });
+    is_addItem(uid, text);
     text = "";
   }
 
