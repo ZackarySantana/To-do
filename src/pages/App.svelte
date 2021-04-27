@@ -1,8 +1,8 @@
 <script>
-  import { authState } from "rxfire/auth";
+  import { user } from "rxfire/auth";
   import { NotificationDisplay } from "@beyonk/svelte-notifications";
 
-  import { auth } from "./ItemStorage";
+  import { setSettings } from "./ItemStorage";
   import Home from "./home/Home.svelte";
   import Login from "./login/Login.svelte";
   import Styles from "./styles/Styles.svelte";
@@ -10,7 +10,6 @@
 
   let darkmode = localStorage.getItem("darkmode") === "true";
   let settings = false;
-  let user = authState(auth);
 
   function openSettings() {
     settings = true;
@@ -27,12 +26,8 @@
       darkmode = !darkmode;
     }
 
-    user.subscribe((u) => {
-      db.doc("todos/" + u.uid + "/documents/settings").set({
-        darkmode: darkmode,
-      });
-      localStorage.setItem("darkmode", darkmode);
-    });
+    setSettings({ darkmode });
+    localStorage.setItem("darkmode", darkmode);
   }
 </script>
 

@@ -1,9 +1,5 @@
 <script>
-  import { auth, googleProvider } from "../../firebase/firebase";
-
-  function login() {
-    auth.signInWithPopup(googleProvider);
-  }
+  import { login } from "../ItemStorage";
 </script>
 
 <section>

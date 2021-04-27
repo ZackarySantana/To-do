@@ -4,7 +4,7 @@
   import { notifier } from "@beyonk/svelte-notifications";
 
   import TodoItem from "./TodoItem.svelte";
-  import { is_addItem } from "../ItemStorage";
+  import { getItems, is_addItem } from "../ItemStorage";
 
   export let uid;
 
@@ -12,9 +12,7 @@
   let amount = 0;
   let inputField;
 
-  const query = db.collection("todos/" + uid + "/documents").orderBy("created");
-
-  const todos = collectionData(query, "id").pipe(
+  const todos = collectionData(getItems(), "id").pipe(
     map((x) => {
       amount = x.length;
       return x;
@@ -34,7 +32,7 @@
       return;
     }
 
-    is_addItem(uid, text);
+    is_addItem(text);
     text = "";
   }
 

@@ -1,9 +1,9 @@
 <script>
+  import { logout } from "../ItemStorage";
+
   export let displayName;
   export let photoURL;
   export let openSettings;
-
-  import { auth } from "../../firebase/firebase";
 </script>
 
 <section>
@@ -11,7 +11,7 @@
   <h1>Hi {displayName}</h1>
   <div>
     <button on:click={() => openSettings()}>⚙️</button>
-    <button on:click={() => auth.signOut()}>Logout</button>
+    <button on:click={logout()}>Logout</button>
   </div>
 </section>
 
