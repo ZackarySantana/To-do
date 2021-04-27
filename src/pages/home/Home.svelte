@@ -1,7 +1,6 @@
 <script>
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
-  import LoadSettings from "../settings/LoadSettings.svelte";
 
   export let user;
 </script>
@@ -10,8 +9,6 @@
   {#if $user}
     <Profile displayName={$user.displayName} photoURL={$user.photoURL} />
     <Todos />
-
-    <LoadSettings />
   {/if}
 </section>
 

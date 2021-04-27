@@ -1,19 +1,20 @@
 <script>
-  import { fly } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
+  import { fly } from "svelte/transition";
+
+  import { updateItem } from "../ItemStorage";
 
   const dispatch = createEventDispatcher();
 
   function remove() {
-    dispatch("remove", { id });
+    dispatch("remove", {
+      id: id,
+    });
   }
 
   function toggleStatus() {
-    let newStatus = !complete;
-    dispatch("toggle", {
-      id,
-      newStatus,
-    });
+    updateItem(id, !complete);
+    complete = !complete;
   }
 
   export let id;

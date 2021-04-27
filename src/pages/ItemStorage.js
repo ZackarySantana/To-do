@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import { authState } from "rxfire/auth";
+import { concatMap } from "rxjs/operators";
 import "firebase/auth";
 import "firebase/firestore";
 import { firebaseConfig } from "../../todos";
@@ -13,73 +14,59 @@ const db = firebase.firestore();
 
 export let darkmode = localStorage.getItem("darkmode") === "true";
 
-export function getItems() {
-  return user.subscribe((u) => {
-    if (u !== null) {
-      return db.collection("todos/" + u.uid + "/documents").orderBy("created");
-    }
+let uid;
+
+export async function getItems() {
+  await user.subscribe((u) => {
+    uid = u.uid;
   });
+
+  const query = await db
+    .collection("todos/" + uid + "/documents")
+    .orderBy("created")
+    .get()
+    .then((ret) => {
+      loadSettings();
+      return ret;
+    });
+
+  return query.docs;
 }
 
 export function updateItem(id, newStatus) {
-  user.subscribe((u) => {
-    if (u !== null) {
-      db.collection("todos/" + u.uid + "/documents")
-        .doc(id)
-        .update({ complete: newStatus });
-    }
-  });
+  db.doc("todos/" + uid + "/documents/" + id).update({ complete: newStatus });
 }
 
 export function removeItem(id) {
-  user.subscribe((u) => {
-    if (u !== null) {
-      db.collection("todos/" + u.uid + "/documents")
-        .doc(id)
-        .delete();
-    }
-  });
+  db.doc("todos/" + uid + "/documents/" + id).delete();
 }
 
 export function is_addItem(text) {
-  user.subscribe((u) => {
-    if (u !== null) {
-      db.collection("todos/" + u.uid + "/documents").add({
-        uid: u.uid,
-        text,
-        complete: false,
-        created: Date.now(),
-      });
-    }
+  db.collection("todos/" + uid + "/documents").add({
+    text,
+    complete: false,
+    created: Date.now(),
   });
 }
 
 export function setSettings(settings) {
-  user.subscribe((u) => {
-    if (u !== null) {
-      db.doc("todos/" + u.uid + "/documents/settings").set(settings);
+  db.doc("todos/" + uid + "/documents/settings").set(settings);
 
-      localStorage.setItem("darkmode", darkmode);
-    }
-  });
+  localStorage.setItem("darkmode", darkmode);
 }
 
-export function loadSettings() {
-  user.subscribe((u) => {
-    if (u !== null) {
-      db.doc("todos/" + u.uid + "/documents/settings")
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            darkmode = doc.data().darkmode;
-          } else {
-            db.doc("todos/" + uid + "/documents/settings").set({
-              darkmode: false,
-            });
-          }
+function loadSettings() {
+  db.doc("todos/" + uid + "/documents/settings")
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        darkmode = doc.data().darkmode;
+      } else {
+        db.doc("todos/" + uid + "/documents/settings").set({
+          darkmode: false,
         });
-    }
-  });
+      }
+    });
 }
 
 export function login() {

@@ -1,24 +1,31 @@
 <script>
-  import { collectionData } from "rxfire/firestore";
-  import { startWith, map } from "rxjs/operators";
   import { notifier } from "@beyonk/svelte-notifications";
 
   import TodoItem from "./TodoItem.svelte";
-  import { getItems, is_addItem, removeItem, updateItem } from "../ItemStorage";
+  import { getItems, is_addItem, removeItem } from "../ItemStorage";
+  import App from "../App.svelte";
+  import Home from "./Home.svelte";
 
   let text = "";
   let amount = 0;
   let inputField;
 
-  const todos = collectionData(getItems(), "id").pipe(
-    map((x) => {
-      console.log("Test");
-      amount = x.length;
-      return x;
-    }),
-    startWith([])
-  );
-  console.log(todos);
+  let todosPromise = getItems();
+  $: todos = [];
+
+  todosPromise.then((todosResult) => {
+    let tempTodos = [];
+    todosResult.forEach((todo) => {
+      tempTodos.push({
+        text: todo.data().text,
+        id: todo.id,
+        complete: todo.data().complete,
+      });
+    });
+    console.log("----------------------------------------");
+    console.log(tempTodos);
+    todos = tempTodos;
+  });
 
   function add() {
     inputField.focus();
@@ -33,17 +40,23 @@
     }
 
     is_addItem(text);
+    todos.push({
+      text,
+      complete: false,
+      created: Date.now(),
+    });
+    todos = todos;
     text = "";
   }
 
-  function updateStatus(event) {
-    const { id, newStatus } = event.detail;
-    updateItem(id, newStatus);
-  }
-
-  function remove(event) {
-    const { id } = event.detail;
-    removeItem(id);
+  function remove(id) {
+    removeItem(id.detail.id);
+    const index = todos.map((todo) => todo.id).indexOf(id.detail.id);
+    if (index > -1) {
+      todos.splice(index, 1);
+      todos = todos;
+      console.log(todos);
+    }
   }
 
   function testEnter(event) {
@@ -56,9 +69,11 @@
 <section>
   <h1>To-do List</h1>
   <ul>
-    {#each $todos as todo}
-      <TodoItem {...todo} on:remove={removeItem} on:toggle={updateStatus} />
-    {/each}
+    {#await todosPromise then t}
+      {#each todos as todo}
+        <TodoItem {...todo} on:remove={remove} />
+      {/each}
+    {/await}
   </ul>
 
   <input
